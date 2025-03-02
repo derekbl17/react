@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cube from "./Cube";
 
 export class Child extends Component {
   constructor(props) {
@@ -10,40 +11,33 @@ export class Child extends Component {
       bc: props.bc || "grey",
       color: "pink",
       sqArr: [],
+      sqrs: []
     };
-    this.basicFunc = this.basicFunc.bind(this);
   }
   simpleFunc = (e) => {
     console.log("im simple func", this);
   };
   genSq = () => {
-    const sqArrCopy = [...this.state.sqArr];
-    sqArrCopy.push(Math.floor(Math.random() * 11 + 10));
-    this.setState({ sqArr: sqArrCopy });
-    console.log(sqArrCopy);
+    const genNum=Math.floor(Math.random() * 11 + 10);
+    this.setState((prevState)=>({
+      sqArr: [...prevState.sqArr,genNum]
+    }))
   };
-  basicFunc() {
-    console.log(this);
-    this.setState({ textColor: "black" });
-    const square = (
-      <div
-        style={{
-          width: "100px",
-          height: "100px",
-          background: "black",
-          margin: "1px",
-          color: "white",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {Math.floor(Math.random() * 11 + 10)}
-      </div>
-    );
-
-    this.state.sqArr.push(square);
+  sortSq=()=>{
+    this.setState((prevState)=>{
+      const arrCopy=[...prevState.sqArr]
+      return {sqArr: arrCopy.sort((a,b)=>a-b)}
+    })
+  }
+  ambiguousSquares=()=>{
+    const colors=["red","blue"]
+    const create=colors.map((cl,i)=>({
+      number: Math.floor(Math.random() * 11 + 10),
+      color: cl
+  }))
+    this.setState((prevState)=>({
+      sqrs:[...prevState.sqrs, ...create]
+    }))
   }
   render() {
     return (
@@ -55,14 +49,20 @@ export class Child extends Component {
           }}
         >
           Hello, {this.state.name} {this.state.lastName}!
-          <button onClick={this.basicFunc}>click</button>
+          <button onClick={this.genSq}>Generate Cube</button>
+          <button onClick={this.sortSq}>Sort Cubes</button>
+          <button onClick={this.ambiguousSquares}>Make 2 colored squares?</button>
           {console.log(this.state.sqArr)}
         </div>
         {this.state.sqArr.map((el, i) => (
-          <div style={{ display: "inline-block" }} key={i}>
-            {el}
-          </div>
+          <Cube key={i} number={el}/>
         ))}
+        <div style={{ display: "flex", flexWrap:"wrap"}}>{this.state.sqrs.map((sqr,i)=>(
+          <Cube
+          key={i}
+          numbe={sqr.number}
+          color={sqr.color}/>
+        ))}</div>
       </>
     );
   }

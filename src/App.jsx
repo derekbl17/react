@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { Child } from "./components/Child";
 
 function App() {
