@@ -1,10 +1,9 @@
-
 import { Child } from "./components/Child";
 
 function App() {
   return (
     <>
-      <Child name="Johhny" lastName="Johner" textColor="green" bc="blue" />
+      <Child name="Johhny" lastName="Johner" textColor="white" bc="black" />
     </>
   );
 }
