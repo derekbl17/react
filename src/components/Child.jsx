@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Cube from "./Cube";
 import Square from "./Cube2";
+import Fetched from "./Fetched";
 
 export class Child extends Component {
   constructor(props) {
