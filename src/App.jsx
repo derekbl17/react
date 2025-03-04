@@ -37,8 +37,8 @@ function App() {
       <DogDisplayer />
       <DogDisplayer3 />
       <DogNumDisplayer />
-      <First give="1st" />
-      <Second give="2nd" />
+      <First give="1st" give2="4st" />
+      <Second give="2nd" give2="3st" />
       <Drill1
         msg1="first drill"
         msg2="second drill"

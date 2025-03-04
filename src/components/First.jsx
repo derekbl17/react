@@ -1,10 +1,11 @@
 import React from "react";
 import Fourth from "./Fourth";
 
-export default function First({ give }) {
+export default function First({ give, give2 }) {
   return (
     <div>
-      <Fourth give={give} />
+      {give}
+      <Fourth give={give2} />
     </div>
   );
 }
